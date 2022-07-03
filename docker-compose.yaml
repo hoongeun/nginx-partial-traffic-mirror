@@ -1,0 +1,20 @@
+version: '3'
+services:
+  proxy:
+    image: nginx:latest
+    ports:
+      - 8000:80
+    volumes:
+      - ./proxy.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+      - mapp
+  app:
+    image: nginx:latest
+    volumes:
+      - ./app:/usr/share/nginx/html
+  mapp:
+    image: nginx:latest
+    volumes:
+      - ./mapp:/usr/share/nginx/html
+
